@@ -45,7 +45,9 @@
             const record = { name: text(item['Determinación']) };
             fields.forEach(field => { record[field.key] = text(item[field.key]); });
             return record;
-        }).filter(record => record.name);
+        }).filter(record => record.name && [
+            'Muestra', 'Tubo', 'Aditivo', 'Ayuno', 'Procesamiento', 'Toma', 'Volumen aproximado'
+        ].some(field => record[field]));
     }
 
     function optionsFor(field, answer) {

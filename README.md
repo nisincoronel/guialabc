@@ -1,6 +1,6 @@
 # GuíaLab v13 + Desafío GuíaLab
 
-Sitio estático listo para publicar en GitHub Pages. La guía y el desafío comparten el archivo `determinaciones.json`.
+Sitio estático listo para publicar en GitHub Pages. La guía y el desafío comparten el archivo `determinaciones.json`. El buscador incluye las prácticas incorporadas desde el Nomenclador Bioquímico Único, actualización 2026; estas entradas no se usan para generar preguntas del juego porque no incluyen datos preanalíticos.
 
 ## Publicar en GitHub Pages
 
