@@ -413,6 +413,61 @@ function render() {
 
 
 // ============================================================
+// MODO ESTUDIANTE · TARJETAS DE REPASO
+// ============================================================
+
+function crearDesafioEstudiante(d) {
+    const respuestas = [
+        { icono: "fa-vial", pregunta: "¿Qué muestra biológica utilizarías?", respuesta: d.muestra || "La base no especifica una muestra." },
+        { icono: "fa-droplet", pregunta: "¿Qué tubo corresponde?", respuesta: d.tubo || "La base no especifica el tubo." },
+        { icono: "fa-utensils", pregunta: "¿Requiere ayuno o alguna preparación especial?", respuesta: d.ayuno || d.prepPaciente || "No se especifica ayuno o preparación especial." },
+        { icono: "fa-gears", pregunta: "¿Cómo debe procesarse o conservarse?", respuesta: d.procesamiento || "La base no especifica el procesamiento." }
+    ];
+
+    return `
+        <section class="student-challenge" aria-label="Tarjetas de repaso">
+            <div class="student-challenge-head">
+                <div class="student-challenge-badge"><i class="fas fa-graduation-cap"></i></div>
+                <div>
+                    <span class="student-overline">Modo estudiante</span>
+                    <h3>Antes de mirar la ficha...</h3>
+                    <p>Intentá responder y revelá cada dato cuando estés listo.</p>
+                </div>
+            </div>
+            <div class="student-question-list">
+                ${respuestas.map(item => `
+                    <article class="student-question">
+                        <div class="student-question-icon"><i class="fas ${item.icono}"></i></div>
+                        <div class="student-question-body"><strong>${escaparHTML(item.pregunta)}</strong><div class="student-answer" hidden>${escaparHTML(item.respuesta)}</div></div>
+                        <button type="button" class="reveal-answer" onclick="revelarRespuestaEstudiante(this)"><i class="fas fa-eye"></i><span>Revelar</span></button>
+                    </article>`).join("")}
+            </div>
+            <div class="student-challenge-actions">
+                <button type="button" class="student-reveal-all" onclick="revelarTodasRespuestas()"><i class="fas fa-lightbulb"></i> Revelar todas</button>
+                <button type="button" class="student-see-file" onclick="mostrarFichaCompletaEstudiante()">Ver ficha completa <i class="fas fa-arrow-down"></i></button>
+            </div>
+        </section>`;
+}
+
+function revelarRespuestaEstudiante(button) {
+    const answer = button.closest(".student-question")?.querySelector(".student-answer");
+    if (!answer) return;
+    const visible = !answer.hidden;
+    answer.hidden = visible;
+    button.classList.toggle("revealed", !visible);
+    button.innerHTML = visible ? '<i class="fas fa-eye"></i><span>Revelar</span>' : '<i class="fas fa-eye-slash"></i><span>Ocultar</span>';
+}
+
+function revelarTodasRespuestas() {
+    document.querySelectorAll(".student-question").forEach(question => {
+        const answer = question.querySelector(".student-answer");
+        const button = question.querySelector(".reveal-answer");
+        if (answer) answer.hidden = false;
+        if (button) { button.classList.add("revealed"); button.innerHTML = '<i class="fas fa-eye-slash"></i><span>Ocultar</span>'; }
+    });
+}
+
+// ============================================================
 // DETALLE
 // ============================================================
 
@@ -546,19 +601,7 @@ function mostrarDetalle(d) {
 
         </div>
 
-        ${modoEstudianteActivo ? `
-            <section class="student-reveal-card" aria-label="Ficha de estudio oculta">
-                <span class="student-reveal-icon"><i class="fas fa-graduation-cap"></i></span>
-                <div>
-                    <span class="student-overline">Modo estudiante</span>
-                    <h3>Intentá identificar los datos antes de mirar.</h3>
-                    <p>Cuando estés listo, revelá la ficha técnica completa.</p>
-                </div>
-                <button type="button" class="student-see-file" onclick="mostrarFichaCompletaEstudiante()">
-                    <i class="fas fa-eye"></i> Revelar ficha
-                </button>
-            </section>
-        ` : ""}
+        ${modoEstudianteActivo ? crearDesafioEstudiante(d) : ""}
 
         <div class="student-reference-wrap" id="studentReferenceWrap" style="${modoEstudianteActivo ? "display:none" : "display:block"};">
 
@@ -1209,7 +1252,6 @@ document
 
 const studentModeButton = document.getElementById("studentModeButton");
 const studentModePanel = document.getElementById("studentModePanel");
-const studentStartButton = document.getElementById("studentStartButton");
 
 function activarModoEstudiante() {
     const activo = document.body.classList.toggle("student-mode-active");
@@ -1230,7 +1272,7 @@ function activarModoEstudiante() {
 
 function mostrarFichaCompletaEstudiante() {
     const wrap = document.getElementById("studentReferenceWrap");
-    const reveal = document.querySelector(".student-reveal-card");
+    const reveal = document.querySelector(".student-challenge");
     if (!wrap) return;
     wrap.style.display = "block";
     if (reveal) reveal.remove();
@@ -1239,17 +1281,6 @@ function mostrarFichaCompletaEstudiante() {
 
 if (studentModeButton) {
     studentModeButton.addEventListener("click", activarModoEstudiante);
-}
-
-if (studentStartButton) {
-    studentStartButton.addEventListener("click", (event) => {
-        event.stopPropagation();
-        const search = document.getElementById("searchInput");
-        if (search) {
-            search.scrollIntoView({ behavior: "smooth", block: "center" });
-            setTimeout(() => search.focus(), 350);
-        }
-    });
 }
 
 // ============================================================
