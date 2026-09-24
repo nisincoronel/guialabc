@@ -424,6 +424,9 @@ function mostrarDetalle(d) {
     const modalData =
         document.getElementById("modalData");
 
+    const modoEstudianteActivo =
+        document.body.classList.contains("student-mode-active");
+
     const centrifugado =
         d.centrifugar
             ? d.centrifugar
@@ -543,7 +546,21 @@ function mostrarDetalle(d) {
 
         </div>
 
-        <div class="student-reference-wrap" id="studentReferenceWrap">
+        ${modoEstudianteActivo ? `
+            <section class="student-reveal-card" aria-label="Ficha de estudio oculta">
+                <span class="student-reveal-icon"><i class="fas fa-graduation-cap"></i></span>
+                <div>
+                    <span class="student-overline">Modo estudiante</span>
+                    <h3>Intentá identificar los datos antes de mirar.</h3>
+                    <p>Cuando estés listo, revelá la ficha técnica completa.</p>
+                </div>
+                <button type="button" class="student-see-file" onclick="mostrarFichaCompletaEstudiante()">
+                    <i class="fas fa-eye"></i> Revelar ficha
+                </button>
+            </section>
+        ` : ""}
+
+        <div class="student-reference-wrap" id="studentReferenceWrap" style="${modoEstudianteActivo ? "display:none" : "display:block"};">
 
         <!-- PESTAÑAS -->
 
@@ -1209,6 +1226,15 @@ function activarModoEstudiante() {
     if (activo && input) {
         setTimeout(() => input.focus(), 120);
     }
+}
+
+function mostrarFichaCompletaEstudiante() {
+    const wrap = document.getElementById("studentReferenceWrap");
+    const reveal = document.querySelector(".student-reveal-card");
+    if (!wrap) return;
+    wrap.style.display = "block";
+    if (reveal) reveal.remove();
+    wrap.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 if (studentModeButton) {

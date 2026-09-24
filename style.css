@@ -1082,6 +1082,12 @@ select:focus { border-color:#76b77e; box-shadow:0 0 0 4px rgba(22,131,63,.10),va
 
 .student-see-file:hover { transform: translateY(-1px); filter: brightness(1.04); }
 
+.student-reveal-card { display:grid; grid-template-columns:42px 1fr; gap:10px; align-items:start; padding:14px; border:1px solid #cfe3c9; border-radius:15px; background:linear-gradient(145deg,#fbfef8,#eff8e9); }
+.student-reveal-icon { display:grid; place-items:center; width:42px; height:42px; border-radius:13px; color:#176b39; background:#dff0d7; }
+.student-reveal-card h3 { margin:3px 0; color:#16412c; font-size:.82rem; }
+.student-reveal-card p { margin:0; color:#668072; font-size:.68rem; line-height:1.45; }
+.student-reveal-card .student-see-file { grid-column:1 / -1; width:100%; padding:10px; border-radius:10px; font-size:.7rem; font-weight:800; cursor:pointer; }
+
 .student-mode-active .modal-content {
     border-color: #cfe3c9;
 }
@@ -1096,6 +1102,8 @@ select:focus { border-color:#76b77e; box-shadow:0 0 0 4px rgba(22,131,63,.10),va
     .reveal-answer span { display: none; }
     .reveal-answer { padding: 8px 9px; }
     .student-challenge-actions { flex-direction: column; }
+    .student-reveal-card { grid-template-columns:36px 1fr; }
+    .student-reveal-icon { width:36px; height:36px; }
 }
 
 
