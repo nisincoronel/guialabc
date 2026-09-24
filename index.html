@@ -107,7 +107,6 @@
                 </div>
                 <div class="student-panel-actions">
                     <button type="button" id="studentStartButton" class="student-start"><i class="fas fa-search"></i> Ir al buscador</button>
-                    <button type="button" id="studentTrainingButton" class="student-start student-training"><i class="fas fa-dumbbell"></i> Entrenamiento</button>
                 </div>
             </div>
             <p class="clinical-note"><i class="fas fa-circle-info"></i> Material de apoyo para formación. Validá siempre el procedimiento vigente con la dirección técnica y el protocolo de tu institución.</p>
@@ -137,7 +136,6 @@
         </section>
 
         <p id="resultsSummary" class="results-summary" aria-live="polite"></p>
-        <section id="studentQuizPanel" class="student-quiz-panel" hidden aria-live="polite"></section>
         <ul id="examList" aria-label="Resultados de estudios"></ul>
 
         <div id="modal" class="modal">
@@ -170,13 +168,6 @@
     </nav>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const btn = document.getElementById('studentTrainingButton');
-            if (btn) btn.addEventListener('click', iniciarEntrenamiento);
-        });
-    </script>
-
     <script>
         // Navegación móvil: mantiene una experiencia tipo app sin alterar la lógica existente.
         document.querySelectorAll('.mobile-nav-item').forEach(item => {
