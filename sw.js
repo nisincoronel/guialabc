@@ -1,10 +1,14 @@
-const CACHE_NAME = 'guialab-cache-v13';
+const CACHE_NAME = 'guialab-cache-v14';
 
 const APP_ASSETS = [
   './',
   './index.html',
+  './game.html',
   './style.css',
+  './game.css',
   './script.js',
+  './game.js',
+  './determinaciones.json',
   './manifest.json',
   './logo-guialab.png',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'

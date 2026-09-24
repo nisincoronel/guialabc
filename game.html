@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#07512f">
+    <title>Desafío GuíaLab</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <main class="game-shell">
+        <a class="back-link" href="index.html"><i class="fas fa-arrow-left"></i> Volver a GuíaLab</a>
+        <section class="game-card" aria-live="polite">
+            <div class="game-brand"><span class="brand-mark"><i class="fas fa-flask"></i></span><span>GuíaLab</span></div>
+            <div id="gameContent">
+                <div class="intro-screen">
+                    <span class="eyebrow"><i class="fas fa-gamepad"></i> Modo juego</span>
+                    <h1>Desafío<br><em>GuíaLab</em></h1>
+                    <p>Respondé preguntas generadas con las determinaciones de la guía. Cada ronda es diferente.</p>
+                    <div class="intro-stats"><span><i class="fas fa-bolt"></i> 10 preguntas</span><span><i class="fas fa-layer-group"></i> Datos reales</span></div>
+                    <button class="primary-button" id="startGame"><i class="fas fa-play"></i> Empezar desafío</button>
+                    <p class="best-score" id="bestScore" hidden></p>
+                </div>
+            </div>
+        </section>
+        <p class="support-note"><i class="fas fa-circle-info"></i> Material educativo. Confirmá los procedimientos con el protocolo de tu institución.</p>
+    </main>
+    <script src="game.js"></script>
+</body>
+</html>

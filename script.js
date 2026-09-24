@@ -533,8 +533,7 @@ function crearPreguntaQuiz(d) {
         { campo: 'muestra', pregunta: '¿Qué muestra corresponde?', icono: 'fa-vial' },
         { campo: 'tubo', pregunta: '¿Qué tubo corresponde?', icono: 'fa-droplet' },
         { campo: 'ayuno', pregunta: '¿Qué preparación/ayuno requiere?', icono: 'fa-utensils' },
-        { campo: 'procesamiento', pregunta: '¿Qué indicación de procesamiento o conservación corresponde?', icono: 'fa-gears' },
-        { campo: 'nbu', pregunta: '¿Cuál es el código NBU de esta práctica?', icono: 'fa-hashtag' }
+        { campo: 'procesamiento', pregunta: '¿Qué indicación de procesamiento o conservación corresponde?', icono: 'fa-gears' }
     ];
     const q = campos[Math.floor(Math.random() * campos.length)];
     const correcta = String(d[q.campo] || '').trim();
@@ -573,7 +572,7 @@ function renderPreguntaQuiz() {
             <div class="quiz-score"><strong>${quizEstado.aciertos}</strong><small>aciertos</small></div>
         </div>
         <div class="quiz-progress"><span style="width:${((quizEstado.indice) / total) * 100}%"></span></div>
-        <div class="quiz-exam-name"><i class="fas fa-flask"></i><strong>${escaparHTML(q.d.nombre)}</strong>${q.d.nbu ? `<span>NBU ${escaparHTML(q.d.nbu)}</span>` : ''}</div>
+        <div class="quiz-exam-name"><i class="fas fa-flask"></i><strong>${escaparHTML(q.d.nombre)}</strong></div>
         <div class="quiz-question"><span class="quiz-icon"><i class="fas ${q.icono}"></i></span><div><small>Pregunta</small><strong>${escaparHTML(q.pregunta)}</strong></div></div>
         <div class="quiz-options">
             ${q.opciones.map((op,i)=>`<button type="button" onclick="responderQuiz(${i})"><span>${String.fromCharCode(65+i)}</span>${escaparHTML(op)}</button>`).join('')}
