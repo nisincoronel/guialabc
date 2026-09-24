@@ -1125,60 +1125,8 @@ select:focus { border-color:#76b77e; box-shadow:0 0 0 4px rgba(22,131,63,.10),va
     border: 1px solid #d9e8ad;
 }
 
-/* ===================== ENTRENAMIENTO ===================== */
 .student-panel-actions { display:flex; gap:8px; margin-top:10px; }
 .student-panel-actions .student-start { flex:1; margin-top:0; }
-.student-training { background: #f0f7d9 !important; color:#48670f !important; border:1px solid #d7e8a5 !important; box-shadow:none !important; }
-.student-training:hover { background:#e7f2c6 !important; }
-.student-quiz-panel {
-    margin: 12px 0 15px;
-    padding: 15px;
-    border: 1px solid #cfe3c9;
-    border-radius: 16px;
-    background: linear-gradient(145deg,#ffffff,#f4f9ee);
-    box-shadow: var(--shadow-sm);
-}
-.student-quiz-panel[hidden] { display:none; }
-.quiz-top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.quiz-top h3 { margin:3px 0 0; font-size:.95rem; color:#123c2a; }
-.quiz-score { min-width:55px; padding:7px 9px; text-align:center; border-radius:11px; background:#edf8e8; color:#176b39; }
-.quiz-score strong { display:block; font-size:1rem; line-height:1; }
-.quiz-score small { font-size:.55rem; font-weight:800; text-transform:uppercase; }
-.quiz-progress { height:5px; margin:12px 0; background:#e4ecdf; border-radius:99px; overflow:hidden; }
-.quiz-progress span { display:block; height:100%; background:linear-gradient(90deg,var(--primary),var(--accent)); border-radius:99px; transition:.25s; }
-.quiz-exam-name { display:flex; align-items:center; gap:7px; flex-wrap:wrap; padding:9px 10px; border-radius:11px; background:#fff; border:1px solid #e0e9dc; color:#254837; font-size:.7rem; }
-.quiz-exam-name i { color:var(--primary); }
-.quiz-exam-name span { margin-left:auto; padding:3px 6px; border-radius:999px; background:#f0f7d9; color:#557514; font-size:.58rem; font-weight:800; }
-.quiz-question { display:flex; gap:10px; align-items:center; margin:12px 0; }
-.quiz-icon { width:38px; height:38px; flex:0 0 38px; display:grid; place-items:center; border-radius:12px; background:#eaf6e4; color:#16833f; }
-.quiz-question small { display:block; color:#789083; font-size:.58rem; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
-.quiz-question strong { display:block; margin-top:2px; color:#1f3d2e; font-size:.78rem; line-height:1.35; }
-.quiz-options { display:grid; gap:7px; }
-.quiz-options button { display:flex; align-items:center; gap:8px; text-align:left; border:1px solid #dbe7d9; background:#fff; color:#294638; padding:9px 10px; border-radius:11px; font-size:.68rem; font-weight:700; cursor:pointer; transition:.16s; }
-.quiz-options button span { width:23px; height:23px; display:grid; place-items:center; flex:0 0 23px; border-radius:7px; background:#edf4e9; color:#55715f; font-size:.62rem; }
-.quiz-options button:hover:not(:disabled) { border-color:#9cc58d; transform:translateY(-1px); }
-.quiz-options button.correct { border-color:#6bb36e; background:#eef9ed; color:#22632f; }
-.quiz-options button.correct span { background:#6bb36e; color:#fff; }
-.quiz-options button.wrong { border-color:#d98b8b; background:#fff1f1; color:#8d3030; }
-.quiz-options button.wrong span { background:#d98b8b; color:#fff; }
-.quiz-options button:disabled { cursor:default; }
-.quiz-feedback { display:grid; grid-template-columns:1fr auto; gap:4px 10px; align-items:center; margin-top:10px; padding:10px; border-radius:11px; font-size:.67rem; }
-.quiz-feedback strong,.quiz-feedback span { display:block; }
-.quiz-feedback span { grid-column:1; }
-.quiz-feedback button { grid-column:2; grid-row:1 / span 2; border:0; border-radius:9px; padding:8px 9px; background:#16833f; color:#fff; font-size:.62rem; font-weight:800; cursor:pointer; }
-.quiz-feedback.is-correct { background:#eef9ed; color:#25633a; }
-.quiz-feedback.is-wrong { background:#fff2f2; color:#873636; }
-.quiz-result { text-align:center; padding:10px 5px 2px; }
-.quiz-result-icon { width:52px; height:52px; margin:0 auto 8px; display:grid; place-items:center; border-radius:16px; background:#edf8e8; color:#16833f; font-size:1.15rem; }
-.quiz-result h3 { margin:4px 0; color:#123c2a; font-size:1.15rem; }
-.quiz-result p { margin:0 0 12px; color:#65796e; font-size:.72rem; }
-@media (max-width:430px) {
-    .student-panel-actions { flex-direction:column; }
-    .quiz-feedback { grid-template-columns:1fr; }
-    .quiz-feedback button { grid-column:1; grid-row:auto; width:100%; }
-    .quiz-exam-name span { margin-left:0; }
-    .nbu-mini { margin-top:3px; margin-left:0; }
-}
 
 /* ==========================================================
    GUÍALAB v13 · Experiencia móvil + acabado visual
