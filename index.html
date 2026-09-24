@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0PN3C9FFQS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-0PN3C9FFQS');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>GuíaLab | Formación y Pre-Analítica</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#07512f">
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="dashboard-header" id="inicio">
+            <div class="dashboard-topline">
+                <div class="brand-mini brand-full-logo">
+                    <img class="brand-logo" src="logo-guialab.png" alt="GuíaLab · Formación y capacitación continua">
+                </div>
+                <span class="online-pill"><i class="fas fa-circle"></i> Activo</span>
+            </div>
+            <div class="dashboard-welcome">
+                <div>
+                    <p class="eyebrow">Panel profesional</p>
+                    <h1>Tu guía de laboratorio, <span>en un solo lugar.</span></h1>
+                    <p>Consultá determinaciones, muestras, tubos y condiciones pre-analíticas rápidamente.</p>
+                </div>
+                <div class="header-symbol"><i class="fas fa-microscope"></i></div>
+            </div>
+            <div class="dashboard-stats" aria-label="Resumen de GuíaLab">
+                <div><i class="fas fa-flask"></i><strong id="statDeterminaciones">—</strong><small>determinaciones</small></div>
+                <div><i class="fas fa-layer-group"></i><strong id="statSectores">10</strong><small>sectores</small></div>
+                <div><i class="fas fa-wifi"></i><strong>OFFLINE</strong><small>modo disponible</small></div>
+            </div>
+        </header>
+
+        <div id="pedido-status" class="pedido-container" style="display: none;">
+            <span><i class="fas fa-clipboard-list"></i> Pedido: <strong id="contador-pedido">0</strong></span>
+            <div>
+                <button onclick="enviarWhatsApp()" class="btn-ws" title="Enviar por WhatsApp">
+                    <i class="fab fa-whatsapp"></i> Enviar
+                </button>
+                
+                <button onclick="descargarTXT()" class="btn-txt" title="Descargar indicaciones en TXT">
+                    <i class="fas fa-file-download"></i> TXT
+                </button>
+                
+                <button onclick="vaciarPedido()" class="btn-clear" title="Vaciar Pedido">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+
+        <section class="learning-hub dashboard-panel" id="learningHub" aria-labelledby="learningTitle">
+            <div class="panel-heading">
+                <div>
+                    <p class="section-kicker">Acceso rápido</p>
+                    <h2 id="learningTitle">¿Qué necesitás consultar?</h2>
+                </div>
+                <span class="panel-icon"><i class="fas fa-bolt"></i></span>
+            </div>
+            <div class="dashboard-actions" aria-label="Acciones rápidas">
+                <button type="button" data-sector="Hematología"><span><i class="fas fa-droplet"></i></span><strong>Hematología</strong><small>Hemograma y más</small></button>
+                <button type="button" data-sector="Hemostasia"><span><i class="fas fa-vial"></i></span><strong>Hemostasia</strong><small>Coagulación</small></button>
+                <button type="button" data-sector="Química clínica"><span><i class="fas fa-flask"></i></span><strong>Química clínica</strong><small>Suero y plasma</small></button>
+                <button type="button" data-sector="Microbiología"><span><i class="fas fa-bacterium"></i></span><strong>Microbiología</strong><small>Cultivos y muestras</small></button>
+            </div>
+            <button type="button" class="dashboard-guide" id="studentModeButton" aria-pressed="false">
+                <span class="guide-icon"><i class="fas fa-graduation-cap"></i></span>
+                <span class="guide-copy"><strong>Modo estudiante</strong><span>Activá una vista pensada para estudiar: preparación, muestra, tubo y procesamiento.</span></span>
+                <span class="guide-toggle"><i class="fas fa-toggle-off"></i></span>
+            </button>
+            <div id="studentModePanel" class="student-mode-panel" hidden>
+                <div class="student-mode-title"><i class="fas fa-book-medical"></i><strong>Modo estudiante activado</strong></div>
+                <div class="student-mode-grid">
+                    <div><b>1</b><span>Buscá una determinación</span></div>
+                    <div><b>2</b><span>Revisá preparación y ayuno</span></div>
+                    <div><b>3</b><span>Identificá muestra y tubo</span></div>
+                    <div><b>4</b><span>Estudiá el procesamiento</span></div>
+                </div>
+                <div class="student-panel-actions">
+                    <button type="button" id="studentStartButton" class="student-start"><i class="fas fa-search"></i> Ir al buscador</button>
+                    <button type="button" id="studentTrainingButton" class="student-start student-training"><i class="fas fa-dumbbell"></i> Entrenamiento</button>
+                </div>
+            </div>
+            <p class="clinical-note"><i class="fas fa-circle-info"></i> Material de apoyo para formación. Validá siempre el procedimiento vigente con la dirección técnica y el protocolo de tu institución.</p>
+        </section>
+
+        <section class="search-section" id="buscar" aria-label="Buscar estudios">
+            <div class="input-group">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar determinación o análisis...">
+            </div>
+            
+            <div class="select-group">
+                <select id="areaSelect">
+                    <option value="">🔬 Todos los sectores</option>
+                    <option value="Hematología">🔬 Hematología</option>
+                    <option value="Hemostasia">🩸 Hemostasia</option>
+                    <option value="Microbiología">🧫 Microbiología</option>
+                    <option value="Química clínica">🧪 Química Clínica</option> 
+                    <option value="Endocrinología">🧬 Endocrinología</option>
+                    <option value="Serología">💉 Serología</option>
+                    <option value="Orina">🚽 Orina</option>
+                    <option value="Parasitología">🦠 Parasitología</option>
+                    <option value="Pesquisa Neonatal">🐰 Pesquisa Neonatal</option>
+                    <option value="Autoinmunidad">🧩 Autoinmunidad</option>
+                </select>
+            </div>
+        </section>
+
+        <p id="resultsSummary" class="results-summary" aria-live="polite"></p>
+        <section id="studentQuizPanel" class="student-quiz-panel" hidden aria-live="polite"></section>
+        <ul id="examList" aria-label="Resultados de estudios"></ul>
+
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="closeModal">&times;</span>
+                <div id="modalData"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Desarrollado por:</p>
+            <strong>Nisin Coronel</strong>
+            <span>Técnico Superior en Lab. Químico Biológico</span>
+            <div class="footer-tag">Posadas, Misiones | 2026</div>
+            
+            <a href="https://wa.me/+5493765127562" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="footer-contact">
+                <i class="fab fa-whatsapp"></i> Consultas profesionales
+            </a>
+        </footer>
+    </div>
+
+    <nav class="mobile-bottom-nav" aria-label="Navegación rápida">
+        <a href="#inicio" class="mobile-nav-item active" data-nav="inicio"><i class="fas fa-house"></i><span>Inicio</span></a>
+        <a href="#buscar" class="mobile-nav-item" data-nav="buscar"><i class="fas fa-magnifying-glass"></i><span>Buscar</span></a>
+        <a href="#learningHub" class="mobile-nav-item" data-nav="estudiar"><i class="fas fa-graduation-cap"></i><span>Estudiar</span></a>
+        <a href="#pedido-status" class="mobile-nav-item" data-nav="pedido"><i class="fas fa-clipboard-list"></i><span>Pedido</span></a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('studentTrainingButton');
+            if (btn) btn.addEventListener('click', iniciarEntrenamiento);
+        });
+    </script>
+
+    <script>
+        // Navegación móvil: mantiene una experiencia tipo app sin alterar la lógica existente.
+        document.querySelectorAll('.mobile-nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.mobile-nav-item').forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                if (item.dataset.nav === 'buscar') {
+                    setTimeout(() => document.getElementById('searchInput')?.focus({ preventScroll: true }), 180);
+                }
+                if (item.dataset.nav === 'pedido') {
+                    const pedido = document.getElementById('pedido-status');
+                    if (pedido && getComputedStyle(pedido).display === 'none') {
+                        document.getElementById('examList')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            });
+        });
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('✅ GuíaLab Offline Activo'))
+                    .catch(err => console.log('❌ Error Service Worker', err));
+            });
+        }
+    </script>
+</body>
+</html>
