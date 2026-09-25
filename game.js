@@ -33,6 +33,44 @@
         return [...list].sort(() => Math.random() - 0.5);
     }
 
+    // Compara el significado de las opciones, no solo el texto literal. Así,
+    // "8 hs", "Ayuno 8 hs" y "Ayuno de 8 horas" no compiten entre sí.
+    function optionKey(field, value) {
+        const normalized = text(value)
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/\s+/g, ' ')
+            .trim();
+
+        if (field.key === 'Ayuno') {
+            if (/^(no requiere|no requerido|no aplica|no)$/.test(normalized)) {
+                return 'sin-ayuno';
+            }
+            const hours = normalized.match(/^(?:ayuno(?: de)?\s*)?(\d+)\s*(?:h|hs|hora|horas)\.?$/);
+            if (hours) return `ayuno-${hours[1]}h`;
+        }
+
+        return normalized.replace(/[^a-z0-9]+/g, '');
+    }
+
+    function isQuestionValue(field, value) {
+        if (!text(value)) return false;
+        if (field.key !== 'Ayuno') return true;
+        // No se pregunta por valores incompletos o indicaciones extensas que
+        // requieren una ficha técnica, no una opción múltiple corta.
+        return /^(sin-ayuno|ayuno-\d+h)$/.test(optionKey(field, value));
+    }
+
+    function displayOption(field, value) {
+        const key = optionKey(field, value);
+        if (field.key === 'Ayuno' && key === 'sin-ayuno') return 'No requiere ayuno';
+        if (field.key === 'Ayuno' && /^ayuno-\d+h$/.test(key)) {
+            return `Ayuno de ${key.match(/\d+/)[0]} hs`;
+        }
+        return text(value);
+    }
+
     function bestLabel() {
         const saved = Number(localStorage.getItem('guialabChallengeBest') || 0);
         if (!saved) return;
@@ -51,18 +89,26 @@
     }
 
     function optionsFor(field, answer) {
-        const choices = [...new Set(records.map(record => record[field.key]).filter(Boolean))]
-            .filter(value => value !== answer);
-        if (choices.length < 3) return null;
-        return shuffle([...shuffle(choices).slice(0, 3), answer]);
+        const answerKey = optionKey(field, answer);
+        const choices = new Map();
+        records.map(record => record[field.key])
+            .filter(value => isQuestionValue(field, value))
+            .forEach(value => choices.set(optionKey(field, value), displayOption(field, value)));
+        choices.set(answerKey, displayOption(field, answer));
+
+        const distractors = [...choices.entries()]
+            .filter(([key]) => key !== answerKey)
+            .map(([, value]) => value);
+        if (distractors.length < 3) return null;
+        return shuffle([...shuffle(distractors).slice(0, 3), displayOption(field, answer)]);
     }
 
     function generateQuestions() {
         const candidates = [];
         records.forEach(record => fields.forEach(field => {
             const answer = record[field.key];
-            const options = answer && optionsFor(field, answer);
-            if (options) candidates.push({ record, field, answer, options });
+            const options = isQuestionValue(field, answer) && optionsFor(field, answer);
+            if (options) candidates.push({ record, field, answer: displayOption(field, answer), answerKey: optionKey(field, answer), options });
         }));
         return shuffle(candidates).slice(0, Math.min(TOTAL_QUESTIONS, candidates.length));
     }
@@ -94,11 +140,11 @@
         state.answered = true;
         const question = questions[state.index];
         const chosen = question.options[index];
-        const correct = chosen === question.answer;
+        const correct = optionKey(question.field, chosen) === question.answerKey;
         const buttons = document.querySelectorAll('#options button');
         buttons.forEach((button, buttonIndex) => {
             button.disabled = true;
-            if (question.options[buttonIndex] === question.answer) button.classList.add('correct');
+            if (optionKey(question.field, question.options[buttonIndex]) === question.answerKey) button.classList.add('correct');
             if (buttonIndex === index && !correct) button.classList.add('incorrect');
         });
         if (correct) {
