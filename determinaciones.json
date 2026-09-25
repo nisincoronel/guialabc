@@ -13,7 +13,7 @@
     "Volumen aproximado": "",
     "Ayuno": "8 hs",
     "Urgencia": "Media",
-    "Condiciones especiales": "Concurrir con ayuno de 8 hs.",
+    "Condiciones especiales": "",
     "Observaciones": "Temperatura ambiente.",
     "Sinónimos": "",
     "NBU": "660297"
@@ -70,14 +70,14 @@
     "Volumen aproximado": "",
     "Ayuno": "8 hs",
     "Urgencia": "Media",
-    "Condiciones especiales": "Concurrir con ayuno de 8 hs.",
-    "Observaciones": "Procesar en el momento o antes de la hora de extracción.",
+    "Condiciones especiales": "",
+    "Observaciones": "Procesar en el momento o antes de la hora de extracción, usar azul brillante de cresil o azul de metileno nuevo.",
     "Sinónimos": "",
     "NBU": "660818"
   },
   {
     "ID": 5,
-    "Determinación": "Tiempo de Protrombina (TP / TPCS2)",
+    "Determinación": "Tiempo de Protrombina",
     "Grupo": "Hemostasia",
     "Integrantes": "",
     "Muestra": "Plasma citratado (Citrato de sodio 3,2%)",
@@ -91,12 +91,12 @@
     "Urgencia": "Alta",
     "Condiciones especiales": "",
     "Observaciones": "Centrifugar y separar en tubo de plástico. Volver a centrifugar. Conservar a Temp. Ambiente. Refrigerar si se demora.",
-    "Sinónimos": "Tiempo de Protrombina - Método Manual (TP M)",
+    "Sinónimos": "TP",
     "NBU": "660771"
   },
   {
     "ID": 7,
-    "Determinación": "KPTT (Tiempo de Tromboplastina Parcial Activado / KPTTCS2)",
+    "Determinación": "Tiempo de Tromboplastina Parcial Activado",
     "Grupo": "Hemostasia",
     "Integrantes": "",
     "Muestra": "Plasma citratado (Citrato de sodio 3,2%)",
@@ -110,12 +110,12 @@
     "Urgencia": "Alta",
     "Condiciones especiales": "",
     "Observaciones": "Temperatura ambiente. Centrifugar y separar en tubo de plástico. Refrigerar si demora.",
-    "Sinónimos": "KPTT - Método Manual (KPTTM)",
+    "Sinónimos": "KPTT",
     "NBU": "660887"
   },
   {
     "ID": 9,
-    "Determinación": "Dímeros D (DIMD)",
+    "Determinación": "Dímeros D",
     "Grupo": "Hemostasia",
     "Integrantes": "",
     "Muestra": "Plasma citratado (Citrato de sodio 3,2%)",
@@ -134,7 +134,7 @@
   },
   {
     "ID": 10,
-    "Determinación": "Fibrinógeno (FIB)",
+    "Determinación": "Fibrinógeno",
     "Grupo": "Hemostasia",
     "Integrantes": "",
     "Muestra": "Plasma citratado (Citrato de sodio 3,2%)",
@@ -153,7 +153,7 @@
   },
   {
     "ID": 11,
-    "Determinación": "Anticoagulante Lúpico (Screning y Confirmatorio - Código 2709)",
+    "Determinación": "Anticoagulante Lúpico",
     "Grupo": "Hemostasia",
     "Integrantes": "",
     "Muestra": "Plasma citratado MUY pobre en plaquetas",
@@ -167,12 +167,12 @@
     "Urgencia": "Baja",
     "Condiciones especiales": "",
     "Observaciones": "CRÍTICO: Doble centrifugado estricto para eliminar plaquetas. Separar en tubo de plástico. Temp. ambiente o congelar si se deriva.",
-    "Sinónimos": "Anticoagulante Lúpico",
+    "Sinónimos": "",
     "NBU": "662709"
   },
   {
     "ID": 12,
-    "Determinación": "Dosaje de von Willebrand: Funcional / Inmunológico (FVWF / 5119)",
+    "Determinación": "Dosaje de von Willebrand: Funcional / Inmunológico",
     "Grupo": "Hemostasia",
     "Integrantes": "",
     "Muestra": "Plasma citratado (Citrato de sodio 3,2%)",
