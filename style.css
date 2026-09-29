@@ -1409,36 +1409,98 @@ footer { border-color:#dbe7d9; background:rgba(255,255,255,.75); }
     to { opacity:1; transform:translateY(0); }
 }
 /* =========================================
-   MATECITO FLOTANTE
+   APOYO A GUÍALAB · MATECITO
    ========================================= */
 
 .matecito-flotante {
     position: fixed;
     right: 18px;
-    bottom: 85px;
+    bottom: 88px;
     z-index: 9999;
-    display: block;
-    transition: transform 0.2s ease;
-}
 
-.matecito-flotante img {
-    display: block;
-    width: 155px;
-    height: auto;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.20));
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 14px 10px 10px;
+
+    background: #ffffff;
+    color: #07512f;
+
+    border: 1px solid rgba(7, 81, 47, 0.16);
+    border-left: 4px solid #07512f;
+    border-radius: 14px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .matecito-flotante:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.16);
 }
 
+.matecito-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #eaf5ef;
+    border-radius: 10px;
+
+    font-size: 20px;
+}
+
+.matecito-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.matecito-text strong {
+    font-size: 13px;
+    font-weight: 700;
+    color: #07512f;
+}
+
+.matecito-text small {
+    margin-top: 3px;
+    font-size: 11px;
+    color: #60736a;
+}
+
+/* Celulares */
 @media (max-width: 600px) {
+
     .matecito-flotante {
         right: 12px;
-        bottom: 78px;
+        bottom: 76px;
+
+        padding: 8px 11px 8px 8px;
+        gap: 8px;
+
+        border-radius: 12px;
     }
 
-    .matecito-flotante img {
-        width: 135px;
+    .matecito-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 17px;
+    }
+
+    .matecito-text strong {
+        font-size: 12px;
+    }
+
+    .matecito-text small {
+        font-size: 10px;
     }
 }
