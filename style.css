@@ -1408,3 +1408,37 @@ footer { border-color:#dbe7d9; background:rgba(255,255,255,.75); }
     from { opacity:0; transform:translateY(18px); }
     to { opacity:1; transform:translateY(0); }
 }
+/* =========================================
+   MATECITO FLOTANTE
+   ========================================= */
+
+.matecito-flotante {
+    position: fixed;
+    right: 18px;
+    bottom: 85px;
+    z-index: 9999;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.matecito-flotante img {
+    display: block;
+    width: 155px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.20));
+}
+
+.matecito-flotante:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .matecito-flotante {
+        right: 12px;
+        bottom: 78px;
+    }
+
+    .matecito-flotante img {
+        width: 135px;
+    }
+}
